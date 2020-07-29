@@ -14,6 +14,20 @@ class MessageType(enum.IntEnum):
     WARNING = 1
     ERROR = 2
     FAILURE = 3
+    
+    @staticmethod
+    def from_str(self, string_message):
+        mapping = {
+            "I": INFO,
+            "W": WARNING,
+            "E": ERROR,
+            "F": FAILURE
+        }
+
+        if string_message in mapping:
+            return mapping[string_message]
+
+        return None
 
 class RegularExpressions(enum.Enum):
     """ Define constant regular expressions """

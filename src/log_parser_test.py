@@ -15,24 +15,6 @@ class LogParserTest(unittest.TestCase):
         self.fake_events = [self.fake_event_with_message_type, self.fake_event]
 
         self.fake_parser = log_parser.LogParser(self.path_to_fake_log, self.fake_events)
-
-    def test_message_type_conversion(self):
-        convert = self.fake_parser.convert_string_message_type_to_enum
-        
-        valid_message_types = ["I", "W", "E", "F"]
-        valid_enum_conversions = [constants.MessageType.INFO,
-                                  constants.MessageType.WARNING,
-                                  constants.MessageType.ERROR,
-                                  constants.MessageType.FAILURE]
-
-        invalid_message_type = "not a message type"
-
-        for i in range(len(valid_message_types)):
-            converted_message_type = convert(valid_message_types[i])
-            self.assertEqual(converted_message_type, valid_enum_conversions[i])
-
-        bad_convert = convert(invalid_message_type)
-        self.assertTrue(bad_convert is None)
    
     def test_extract_log_line_details(self):
         example_line = "I0924 00:33:03.847223   22675 init_google.cc:966] argv[0]: '/usr/local/bin/gsysd'"

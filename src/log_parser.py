@@ -98,7 +98,8 @@ class LogParser:
         rule_message_type = rule.message_type
 
         if rule_message_type is not None:
-            line_message_type = self.convert_string_message_type_to_enum(line[0])
+            message_str = line[0]
+            line_message_type = constants.MessageType.from_str(message_str)
             
             if line_message_type is None or line_message_type != rule_message_type:
                 return None

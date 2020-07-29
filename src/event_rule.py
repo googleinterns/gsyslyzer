@@ -17,10 +17,7 @@ class EventRule:
     """
 
     def __init__(self, tag, regular_expression, message_type=None):
-        allowed_message_types = [constants.MessageType.INFO,
-                                 constants.MessageType.WARNING,
-                                 constants.MessageType.ERROR,
-                                 constants.MessageType.FAILURE] 
+        allowed_message_types = [message_type.value for message_type in constants.MessageType]
         
         if message_type is None or message_type in allowed_message_types:
             self.message_type = message_type
