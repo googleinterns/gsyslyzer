@@ -16,7 +16,7 @@ class MessageType(enum.IntEnum):
     FAILURE = 3
     
     @staticmethod
-    def from_str(self, string_message):
+    def from_log_prefix(self, string_message):
         mapping = {
             "I": INFO,
             "W": WARNING,
