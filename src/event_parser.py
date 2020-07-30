@@ -57,7 +57,7 @@ class LogEventParser:
         if tag_index == 0 and next_tag_index == len(ordered_tags):
             # In the special case that a group only requires one event
             # the current context buffer and first event found are 
-            # immeditaely grouped and stored as a valid group.
+            # immediately grouped and stored as a valid group.
             all_log_events = context_event_buffer + [event]
             
             event_group = LogEventGroup(tag=group_tag, trigger_log_events=[event],
