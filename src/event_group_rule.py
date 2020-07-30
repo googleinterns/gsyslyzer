@@ -12,7 +12,11 @@ class EventGroupRule:
         context_event_tags: list of tags associated to LogEvents
                             and that supply context to event group """
 
-    def __init__(self, tag, trigger_event_tags, context_event_tags=[]):
+    def __init__(self, tag, trigger_event_tags, context_event_tags=None):
         self.trigger_event_tags = trigger_event_tags
         self.context_event_tags = context_event_tags
+
+        if self.context_event_tags is None:
+            self.context_event_tags = []
+    
         self.tag = tag

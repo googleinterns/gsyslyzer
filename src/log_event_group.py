@@ -20,7 +20,9 @@ class LogEventGroup:
         self.all_log_events = all_log_events
 
     def add_log_event(self, trigger_log_event=None, context_log_event=None):
-        if trigger_log_event is not None:
+        if trigger_log_event is not None and context_log_event is not None:
+            raise Exception("LogEventGroup Error: Only one event is addable at a time.")
+        elif trigger_log_event is not None:
             event = trigger_log_event
             self.trigger_log_events.append(event)
         elif context_log_event is not None:
