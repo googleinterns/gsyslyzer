@@ -37,7 +37,6 @@ class Criteria:
         }
 
         if collect_statistics:
-            # specify the signal origin!! 
             stat_summary = SignalStatistics().collect_signal_stats(detected_signals)
             output_dict["statistics"] = stat_summary
 

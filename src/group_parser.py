@@ -77,7 +77,7 @@ class EventGroupParser:
                         confirmed_signal = confirmed_signals.pop(0)
                         related_symptom = symptoms.pop(0)
                 elif prev_symptom_tag == related_symptom.tag:
-                    # its part of the current burst
+                    # Its part of the current burst
                     burst_list.append(related_symptom)
 
                     if len(confirmed_signals) > 0:
