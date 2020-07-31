@@ -1,7 +1,7 @@
-from log_sifter import LogSifter
-
 """ Module for providing an object that will ease the process of
     building a LogSifter object """
+
+from log_sifter import LogSifter
 
 class SifterBuilder:
     """ Class for building a Sifter object """

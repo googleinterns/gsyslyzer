@@ -1,3 +1,5 @@
+""" Module for completing end to end parsing of a log """
+
 import json
 
 import constants
@@ -9,8 +11,6 @@ from symptom import Symptom
 from signals import DetectedSignal
 from log_event_group import LogEventGroup
 from log_event import LogEvent
-
-""" Module for completing end to end parsing of a log """
 
 class LogSifter:
     """ Object for implementing the high level flow of parsing the log
@@ -31,28 +31,36 @@ class LogSifter:
         self.flags = flags
 
     def sift_log(self):
+        """ Implements the logical flow of the multiple parsing stages. """
+
+        # Parse the raw log
         log_parser = LogParser(self.log_file_path, self.event_rules)
         log_parser.parse_log()
         log_events = log_parser.log_events_found
 
+        # Parse the log events
         event_parser = LogEventParser(log_events, self.group_rules)
         event_parser.parse_log_events()
         event_groups = event_parser.event_groups_found
 
         collect_statistics = self.flags.collect_statistics
 
+        # Parse the event groups
         group_parser = EventGroupParser(event_groups, self.criterias,
                                         collect_statistics)
-
         group_parser.parse_event_groups()
         statistics = group_parser.statistics_summaries
 
+        # Construct the output
         if self.flags.json_output:
             self.output_to_json(group_parser, statistics)
         else:
             self.output_to_terminal(group_parser, statistics)
 
     def output_to_terminal(self, group_parser, statistics):
+        """ Outputs a listing of each symptom burst and its details to
+            the terminal depending on the level of verbosity selected. """
+
         burst_tags = list(group_parser.burst_dict.keys())
         burst_dict = group_parser.burst_dict
         burst_list = group_parser.bursts
@@ -87,11 +95,19 @@ class LogSifter:
             
 
     def output_to_json(self, group_parser, statistics):
+        """ Unpacks the group parser into json output then writes the
+            results to gsyslyzeer_output.json. """
+
         dict_output = self.convert_to_dict(group_parser)
         with open("gsyslyzer_output.json", "w") as outfile:
             json.dump(dict_output, outfile)
 
     def convert_to_dict(self, object_to_translate):
+        """ Recursively unpacks objects stored within the gorup parser
+            to build JSON representations of the important pieces of
+            data that should be reported to the user from each nested
+            object. """
+
         if isinstance(object_to_translate, list):
             translated_list = []
             for item in object_to_translate:

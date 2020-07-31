@@ -1,6 +1,6 @@
-import argparse
+""" Module for defining the CLI usage. """
 
-""" Module for defining the CLI usage"""
+import argparse
 
 class Gsyslyzer:
     """ Object for building and running a complete sifting pipeline
