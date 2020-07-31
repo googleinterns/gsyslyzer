@@ -1,8 +1,10 @@
+""" Module for unit testing the parsing of log events into event groups """
+
 import unittest
 from copy import copy
+
 import event_parser, constants
 from mocks import MockLogEvent
-""" Module for unit testing the parsing of log events into event groups """
 
 class EventParserTest(unittest.TestCase):
     """ Test suite for the event parser """

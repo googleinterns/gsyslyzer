@@ -1,11 +1,11 @@
+""" Module for parsing a raw Gsys log into predefined events """
+
 import re
 from datetime import datetime
 
 import constants
 from event_rule import EventRule
 from log_event import LogEvent
-
-""" Module for parsing a raw Gsys log into predefined events """
 
 class LogParser:
     """ Parser that loads, preproccesses, and extracts events from the

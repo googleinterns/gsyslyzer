@@ -1,7 +1,8 @@
-import unittest
-import log_parser, constants
 """ Module for unit testing the raw Gsys log parser """
 
+import unittest
+
+import log_parser, constants
 
 class LogParserTest(unittest.TestCase):
     """ Test suite for the log parser """

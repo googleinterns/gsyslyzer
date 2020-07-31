@@ -1,6 +1,6 @@
-from datetime import datetime
-
 """ Module for defining an object representation for a detected event in the log """
+
+from datetime import datetime
 
 class LogEvent:
     """ A condensed representation of a line in the log that matched
