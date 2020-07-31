@@ -1,8 +1,8 @@
+""" Module for defining a rule to classify log lines into events """
+
 import re
 
 import constants
-
-""" Module for defining a rule to classify log lines into events """
 
 class EventRule:
     """ A rule that can be applied to a line of the log to check for an event

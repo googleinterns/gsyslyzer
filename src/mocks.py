@@ -1,3 +1,5 @@
+""" Module for mocking certain objects for testing purposes. """
+
 import re
 from datetime import datetime
 

@@ -1,9 +1,9 @@
+""" Module for parsing Log Events into Event Groups """
+
 from datetime import datetime
 from event_group_rule import EventGroupRule
 from log_event_group import LogEventGroup
 from log_parser import LogEvent, LogParser
-
-""" Module for parsing Log Events into Event Groups """
 
 class LogEventParser:
     """ Parser for applying group rules against a list of events to

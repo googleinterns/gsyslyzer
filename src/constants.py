@@ -1,6 +1,6 @@
-import enum
-
 """ Module for defining constants used in this project """
+
+import enum
 
 class VerbosityLevel(enum.IntEnum):
     """ Define levels of output verbosity"""
