@@ -11,11 +11,8 @@ class SymptomBurst:
         self.tag = symptoms[0].tag
         self.symptom_count = len(symptoms)
 
-        duration = None
+        duration = 0
         for symptom in symptoms:
-            if duration is None:
-                duration = symptom.duration
-            else:
-                duration += symptom.duration
+            duration += symptom.duration
 
         self.duration = duration

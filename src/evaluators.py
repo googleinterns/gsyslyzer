@@ -19,7 +19,6 @@ class Evaluator:
 
         return confirmed_signals
                 
-""" Children of Evaluator """
 class GreaterThanEvaluator(Evaluator):
     """ Evaluator for checking when values exceed the threshold """
     def __init__(self, threshold):
