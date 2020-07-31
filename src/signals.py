@@ -1,7 +1,7 @@
-import datetime
-
 """ Module for defining the different types of signals that can be 
-    extracted from a list of event groups """
+    extracted from a list of event groups. """
+
+import datetime
 
 class DetectedSignal:
     """ Object for representing a signal that has been found """
@@ -26,6 +26,9 @@ class IntervalGroupSignal:
         self.end_group_tag = end_group_tag
 
     def detect_signals(self, event_groups):
+        """ Loops through event groups and creates a DetectedSignal for
+            each time delta between the start and end event group. """
+
         signals = []
         start_group_queue = []
 
@@ -55,6 +58,9 @@ class RepeatGroupSignal:
         self.group_tag = group_tag
         
     def detect_signals(self, event_groups):
+        """ Loops through event groups and creates a DetectedSignal for
+            each time delta between repeats of the given event group. """
+
         signals = []
 
         start_group = None
@@ -80,6 +86,9 @@ class ExistenceGroupSignal:
         self.group_tag = group_tag
 
     def detect_signals(self, event_groups):
+        """ Loops through event groups and creates a DetctedSignal for
+            each occurence of the given event group. """
+
         signals = []
         for group in event_groups:
             if group.tag == self.group_tag:
@@ -98,6 +107,10 @@ class IntervalEventSignal:
         self.end_event_tag = end_event_tag
     
     def detect_signals(self, event_groups):
+        """ Loops through event groups and creates a DetectedSignal for
+            the interval between each start and end event within the 
+            given event group. """
+
         signals = []
 
         for group in event_groups:

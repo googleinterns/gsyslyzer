@@ -1,11 +1,10 @@
+""" Module for parsing event groups by applying criteria against them 
+    to generate signals that will be evaluated to determine if group
+    is symptomatic """
+
 import copy
 
 from symptom_burst import SymptomBurst
-
-""" Module for parsing event groups by applying criteria against them 
-    to generate signals that will be evaluated to determine if group
-    is symptomatic """ 
-    
 
 class EventGroupParser:
     """ Parser for applying criteria against event groups 
@@ -34,6 +33,9 @@ class EventGroupParser:
         self.statistics_summaries = {}
 
     def parse_event_groups(self):
+        """ Applies each criteria against the event groups and stores
+            the results, and then detects bursts in the results. """
+
         detected_signals = []
         confirmed_signals = []
 
@@ -55,6 +57,9 @@ class EventGroupParser:
         self.detect_bursts(detected_signals, confirmed_signals)
 
     def detect_bursts(self, detected_signals, confirmed_signals):
+        """ Loops through confirmed signals and detected signals to
+            group together consecutive confirmed signals. """
+
         if len(confirmed_signals) == 0:
             return
 

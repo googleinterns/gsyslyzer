@@ -1,6 +1,6 @@
-import numpy as np
-
 """ Module for collecting statistics on occcurences of signals """
+
+import numpy as np
 
 class SignalStatistics:
     """ Object for parsing over signals and collecting statistics about
@@ -9,6 +9,10 @@ class SignalStatistics:
         pass
 
     def collect_signal_stats(self, signals):
+        """ Loops through the given signals and adds their hour of
+            occurrence, duration, and interval since last occurence to
+            their respective datasets. """
+
         occurence_rate_data = {}
         duration_data = []
         interval_data = []
@@ -35,6 +39,8 @@ class SignalStatistics:
 
     def get_summary(self, signal_tag, occurence_rate_data, 
                     duration_data, interval_data):
+        """ Makes the NumPy calls to calculate the actual statistics
+            and groups all these together into a summary dicitonary. """
 
         all_hours = list(occurence_rate_data.keys())
         hour_span = np.max(all_hours) - np.min(all_hours)
