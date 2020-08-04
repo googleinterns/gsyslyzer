@@ -13,6 +13,7 @@ class SymptomBurst:
         action_msg: String action that is relayed to user
         tag: String identifier for this type of symptom burst
         symptom_count: int count of all symptom occurences
+        duration: datetime.timedelta of the total time of the burst
         """
 
     def __init__(self, symptoms):
