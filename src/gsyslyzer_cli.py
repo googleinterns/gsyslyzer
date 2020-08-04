@@ -13,10 +13,10 @@ class Gsyslyzer:
     def __init__(self, builder):
         self.builder = builder
 
-        parser = argparse.ArgumentParser(description="GSift CLI")
+        parser = argparse.ArgumentParser(description="Gsyslyzer CLI")
         parser.add_argument("--verbosity", default=0, 
-                            type=int, help=("0: Basic summary 1: Symptom summary "
-                                            "2: All symptoms"))
+                            type=int, help=("0: Symptom summary "
+                                            "1: All symptom bursts"))
         parser.add_argument("--collect_statistics", default=False, 
                             type=bool, help=("Set True to collect signal statistics"))
         parser.add_argument("--json_output", default=False, help=("Set True to write output "
