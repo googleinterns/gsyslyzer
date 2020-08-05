@@ -1,6 +1,9 @@
+""" Module for testing the group_parser"""
+
 import unittest
-from group_parser import EventGroupParser
-from mocks import MockCriteria, MockLogEventGroup
+
+import group_parser
+import mocks
 
 class GroupParserTest(unittest.TestCase):
     """ testing suite for the event group parser """
@@ -8,14 +11,14 @@ class GroupParserTest(unittest.TestCase):
         super(GroupParserTest, self).setUp()
        
         tags = ["A", "A", "A", "B", "C", "C", "A", "A"]
-        self.criteria = MockCriteria(yes=["A", "C"])
+        self.criteria = mocks.MockCriteria(yes=["A", "C"])
 
         groups = []
         for tag in tags:
-            groups.append(MockLogEventGroup(tag))
+            groups.append(mocks.MockLogEventGroup(tag))
 
         self.groups = groups
-        self.group_parser = EventGroupParser(self.groups, [self.criteria])
+        self.group_parser = group_parser.EventGroupParser(self.groups, [self.criteria])
 
     def test_burst_detection(self):
         self.group_parser.parse_event_groups()

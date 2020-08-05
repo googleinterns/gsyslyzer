@@ -1,9 +1,6 @@
 """ Module for parsing Log Events into Event Groups """
 
-from datetime import datetime
-from event_group_rule import EventGroupRule
-from log_event_group import LogEventGroup
-from log_parser import LogEvent, LogParser
+import log_event_group
 
 class LogEventParser:
     """ Parser for applying group rules against a list of events to
@@ -60,9 +57,10 @@ class LogEventParser:
             # immediately grouped and stored as a valid group.
             all_log_events = context_event_buffer + [event]
             
-            event_group = LogEventGroup(tag=group_tag, trigger_log_events=[event],
-                                        context_log_events=context_event_buffer,
-                                        all_log_events=all_log_events)
+            event_group = log_event_group.LogEventGroup(tag=group_tag, 
+                                                        trigger_log_events=[event],
+                                                        context_log_events=context_event_buffer,
+                                                        all_log_events=all_log_events)
 
             self.event_groups_found.append(event_group)
 
@@ -78,9 +76,10 @@ class LogEventParser:
             # partial group and stored in the search dictionary.
             all_log_events = context_event_buffer + [event]
             
-            event_group = LogEventGroup(tag=group_tag, trigger_log_events=[event],
-                                        context_log_events=context_event_buffer,
-                                        all_log_events=all_log_events)
+            event_group = log_event_group.LogEventGroup(tag=group_tag, 
+                                                        trigger_log_events=[event],
+                                                        context_log_events=context_event_buffer,
+                                                        all_log_events=all_log_events)
 
             context_event_buffer = []
             

@@ -1,9 +1,6 @@
 """ Module for mocking certain objects for testing purposes. """
 
-import re
-from datetime import datetime
-
-from log_parser import LogEvent
+import datetime
 
 class MockLogEvent:
     """ Mock for a LogEvent object """ 
@@ -31,7 +28,7 @@ class MockLogEventGroup:
 
 class MockSymptom:
     """ Mock for a detected Symptom object """
-    def __init__(self, tag, duration=0):
+    def __init__(self, tag, duration=datetime.timedelta(seconds=0)):
         self.tag = tag
         self.start_timestamp = 0
         self.action_msg = "Do Nothing."

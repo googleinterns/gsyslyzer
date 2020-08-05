@@ -1,8 +1,10 @@
+""" Module for testing signal detection """
+
 import unittest
 import datetime
 
 import signals
-from mocks import MockLogEvent, MockLogEventGroup
+import mocks
 
 class SignalsTest(unittest.TestCase):
     def setUp(self):
@@ -35,19 +37,19 @@ class SignalsTest(unittest.TestCase):
             group_definition = group_definition_dict[group_tag]
             
             for context_tag in group_definition["context"]:
-                context_event = MockLogEvent(tag=context_tag, timestamp=fake_timestamp,
+                context_event = mocks.MockLogEvent(tag=context_tag, timestamp=fake_timestamp,
                                              is_context=True)
                 all_events.append(context_event)
 
                 fake_timestamp += 1
 
             for trigger_tag in group_definition["trigger"]:
-                trigger_event = MockLogEvent(tag=trigger_tag, timestamp=fake_timestamp)
+                trigger_event = mocks.MockLogEvent(tag=trigger_tag, timestamp=fake_timestamp)
                 all_events.append(trigger_event)
 
                 fake_timestamp += 1
 
-            mock_event_group = MockLogEventGroup(tag=group_tag, all_mock_events=all_events)
+            mock_event_group = mocks.MockLogEventGroup(tag=group_tag, all_mock_events=all_events)
             mock_event_groups.append(mock_event_group)
 
 

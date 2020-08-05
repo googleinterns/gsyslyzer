@@ -1,6 +1,6 @@
 """ Module for defining an object representation for a detected event in the log """
 
-from datetime import datetime
+import datetime
 
 class LogEvent:
     """ A condensed representation of a line in the log that matched
@@ -53,7 +53,7 @@ class LogEvent:
 
         # Must convert all the strs into an iso format date
         iso_date_str = year_str + "-" + month_str + "-" + day_str + "T" + time_str
-        timestamp = datetime.fromisoformat(iso_date_str)
+        timestamp = datetime.datetime.fromisoformat(iso_date_str)
 
         return timestamp
 

@@ -1,8 +1,8 @@
 """ Module for defining criteria to be used to evaluate event groups. """
 
-from symptom import Symptom
-from signal_statistics import SignalStatistics
 import constants
+import symptom
+import signal_statistics
 
 class Criteria:
     """ Object for detecting and evaluating signals resulting from
@@ -42,7 +42,8 @@ class Criteria:
         }
 
         if collect_statistics:
-            stat_summary = SignalStatistics().collect_signal_stats(detected_signals)
+            statistics_collector = signal_statistics.SignalStatistics()
+            stat_summary = statistics_collector.collect_signal_stats(detected_signals)
             output_dict["statistics"] = stat_summary
 
         return output_dict
@@ -53,7 +54,7 @@ class Criteria:
 
         symptoms = []
         for signal in signals:
-            symptom = Symptom(self.symptom_tag, self.action_msg, signal)
+            symptom = symptom.Symptom(self.symptom_tag, self.action_msg, signal)
             symptoms.append(symptom)
 
         return symptoms

@@ -4,7 +4,7 @@
 
 import copy
 
-from symptom_burst import SymptomBurst
+import symptom_burst
 
 class EventGroupParser:
     """ Parser for applying criteria against event groups 
@@ -90,7 +90,7 @@ class EventGroupParser:
                         related_symptom = symptoms.pop(0)
                 else:
                     # Its a different burst right after the current one
-                    burst = SymptomBurst(burst_list)
+                    burst = symptom_burst.SymptomBurst(burst_list)
                     self.bursts.append(burst)
 
                     if prev_symptom_tag not in self.burst_dict:
@@ -107,7 +107,7 @@ class EventGroupParser:
             else:
                 # The burst is broken by an innocent group
                 if prev_symptom_tag is not None and len(burst_list) > 0:
-                    burst = SymptomBurst(burst_list)
+                    burst = symptom_burst.SymptomBurst(burst_list)
                     self.bursts.append(burst)
 
                     if prev_symptom_tag not in self.burst_dict:
@@ -121,7 +121,7 @@ class EventGroupParser:
 
         # Check for leftover burst that did not get logged
         if prev_symptom_tag is not None and len(burst_list) > 0:
-            burst = SymptomBurst(burst_list)
+            burst = symptom_burst.SymptomBurst(burst_list)
             self.bursts.append(burst)
 
             if prev_symptom_tag not in self.burst_dict:

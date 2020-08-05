@@ -1,10 +1,12 @@
 """ Module for unit testing the parsing of log events into event groups """
 
 import unittest
-from copy import copy
 
-import event_parser, constants
-from mocks import MockLogEvent
+import event_parser
+import event_group_rule
+import constants
+import mocks
+
 
 class EventParserTest(unittest.TestCase):
     """ Test suite for the event parser """
@@ -19,9 +21,9 @@ class EventParserTest(unittest.TestCase):
         self.trigger_tags_dog = ["D", "O", "G"]
         self.context_tags_dog = ["X", "Y"]
 
-        event_group_rule_cat = event_parser.EventGroupRule(self.tag_cat, self.trigger_tags_cat)
-        event_group_rule_dog = event_parser.EventGroupRule(self.tag_dog, self.trigger_tags_dog,
-                                              self.context_tags_dog)
+        event_group_rule_cat = event_group_rule.EventGroupRule(self.tag_cat, self.trigger_tags_cat)
+        event_group_rule_dog = event_group_rule.EventGroupRule(self.tag_dog, self.trigger_tags_dog,
+                                                               self.context_tags_dog)
 
         self.event_group_rules = [event_group_rule_cat, event_group_rule_dog]
 
@@ -29,7 +31,7 @@ class EventParserTest(unittest.TestCase):
         """ Quick setup for different test cases """
         log_events = []
         for tag in tags:
-            mock_log_event = MockLogEvent(tag)
+            mock_log_event = mocks.MockLogEvent(tag)
             log_events.append(mock_log_event)
 
         log_event_parser = event_parser.LogEventParser(log_events,

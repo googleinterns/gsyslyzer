@@ -2,7 +2,9 @@
 
 import unittest
 
-import log_parser, constants
+import log_parser
+import event_rule
+import constants
 
 class LogParserTest(unittest.TestCase):
     """ Test suite for the log parser """
@@ -11,8 +13,8 @@ class LogParserTest(unittest.TestCase):
 
         self.path_to_fake_log = "test_data/fake_logs/log_parser_fake_log"
 
-        self.fake_event_with_message_type = log_parser.EventRule("A", "(.*)(I'm a test event)(.*)", constants.MessageType.INFO)
-        self.fake_event = log_parser.EventRule("B", "(.*)(I'm a different test event)(.*)")
+        self.fake_event_with_message_type = event_rule.EventRule("A", "(.*)(I'm a test event)(.*)", constants.MessageType.INFO)
+        self.fake_event = event_rule.EventRule("B", "(.*)(I'm a different test event)(.*)")
         self.fake_events = [self.fake_event_with_message_type, self.fake_event]
 
         self.fake_parser = log_parser.LogParser(self.path_to_fake_log, self.fake_events)

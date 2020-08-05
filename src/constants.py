@@ -5,8 +5,7 @@ import enum
 class VerbosityLevel(enum.IntEnum):
     """ Define levels of output verbosity"""
     LOW = 0
-    MEDIUM = 1
-    HIGH = 2
+    HIGH = 1
 
 class MessageType(enum.IntEnum):
     """ Define message types """
