@@ -129,3 +129,13 @@ class EventGroupParser:
             else:
                 self.burst_dict[prev_symptom_tag].append(burst)
 
+    def convert_self_to_dict(self):
+        dict_form = {}
+        dict_form["statistics"] = self.statistics_summaries
+        dict_form["symptom_bursts"] = []
+        
+        for burst in self.bursts:
+            converted_burst = burst.convert_self_to_dict()
+            dict_form["symptom_bursts"].append(converted_burst)
+
+        return dict_form

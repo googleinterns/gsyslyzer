@@ -28,3 +28,17 @@ class SymptomBurst:
             duration += symptom.duration
 
         self.duration = duration
+
+    def convert_self_to_dict(self):
+        """ Converts self to a dict form for json output """
+        
+        dict_form = self.__dict__
+        dict_form["burst_start_timestamp"] = str(dict_form["burst_start_timestamp"])
+        dict_form["duration"] = str(dict_form["duration"])
+        dict_form["symptoms"] = []
+        
+        for symptom in self.symptoms:
+            converted_symptom = symptom.convert_self_to_dict()
+            dict_form["symptoms"].append(converted_symptom)
+
+        return dict_form
