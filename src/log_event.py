@@ -57,7 +57,7 @@ class LogEvent:
 
         return timestamp
 
-    def convert_self_to_dict(self):
+    def convert_to_dict(self):
         """ Converts object form of self to dictionary for outputing to json. """
         
         dict_form = self.__dict__

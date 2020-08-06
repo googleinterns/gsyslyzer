@@ -31,7 +31,7 @@ class LogEventGroup:
 
         self.all_log_events.append(event)
 
-    def convert_self_to_dict(self):
+    def convert_to_dict(self):
         """ Converts self to dictionary form for json output """
 
         dict_form = {}
@@ -40,7 +40,7 @@ class LogEventGroup:
         dict_form["ordered_events"] = []
 
         for event in all_events:
-            converted_event = event.convert_self_to_dict()
+            converted_event = event.convert_to_dict()
             dict_form["ordered_events"].append(converted_event)
 
         return dict_form 

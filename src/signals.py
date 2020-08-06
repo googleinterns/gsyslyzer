@@ -18,7 +18,7 @@ class DetectedSignal:
         self.end_timestamp = groups[-1].trigger_log_events[-1].timestamp
         self.duration = self.end_timestamp - self.start_timestamp
 
-    def convert_self_to_dict(self):
+    def convert_to_dict(self):
         dict_form = {}
         dict_form["start_timestamp"] = str(self.start_timestamp)
         dict_form["duration"] = str(self.duration)
@@ -29,7 +29,7 @@ class DetectedSignal:
 
         dict_form["groups"] = []
         for group in self.groups:
-            converted_group = group.convert_self_to_dict()
+            converted_group = group.convert_to_dict()
             dict_form["groups"].apppend(converted_group)
 
         return output
