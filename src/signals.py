@@ -18,6 +18,22 @@ class DetectedSignal:
         self.end_timestamp = groups[-1].trigger_log_events[-1].timestamp
         self.duration = self.end_timestamp - self.start_timestamp
 
+    def convert_to_dict(self):
+        dict_form = {}
+        dict_form["start_timestamp"] = str(self.start_timestamp)
+        dict_form["duration"] = str(self.duration)
+        dict_form["end_timestamp"] = str(self.end_timestamp)
+            
+        if self.interval is not None:
+            dict_form["interval"] = str(dict_form.interval)
+
+        dict_form["groups"] = []
+        for group in self.groups:
+            converted_group = group.convert_to_dict()
+            dict_form["groups"].apppend(converted_group)
+
+        return output
+
 class IntervalGroupSignal:
     """ Interval signal detector for event groups """
     def __init__(self, tag, start_group_tag, end_group_tag):

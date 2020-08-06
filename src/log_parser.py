@@ -1,11 +1,9 @@
 """ Module for parsing a raw Gsys log into predefined events """
 
 import re
-from datetime import datetime
 
 import constants
-from event_rule import EventRule
-from log_event import LogEvent
+import log_event
 
 class LogParser:
     """ Parser that loads, preproccesses, and extracts events from the
@@ -70,7 +68,7 @@ class LogParser:
 
                     log_line_details_dict = self.extract_log_line_details(line)
                     log_line_details_dict['year'] = log_year
-                    log_event = LogEvent(tag, log_line_details_dict, result)
+                    log_event = log_event.LogEvent(tag, log_line_details_dict, result)
 
                     self.log_events_found.append(log_event)
                     
