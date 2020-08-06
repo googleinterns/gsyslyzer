@@ -28,4 +28,4 @@ class JsonGenerator:
 
             return translated_list
         else:
-            return object_to_translate.convert_self_to_dict()
+            return object_to_translate.convert_to_dict()
