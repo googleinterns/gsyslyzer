@@ -151,7 +151,7 @@ if __name__ == "__main__":
                 group_tag="sigterm"
             ),
             evaluator=evaluators.ExistenceEvaluator(),
-            action_msg="Gsys has been killed by a third party.\n(Check taskd logs for details.)"
+            action_msg="Gsys has been killed by a third party. (Check taskd logs for details.)"
         )
     )
 
