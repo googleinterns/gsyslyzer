@@ -54,7 +54,7 @@ class Criteria:
 
         symptoms = []
         for signal in signals:
-            symptom = symptom.Symptom(self.symptom_tag, self.action_msg, signal)
-            symptoms.append(symptom)
+            new_symptom = symptom.Symptom(self.symptom_tag, self.action_msg, signal)
+            symptoms.append(new_symptom)
 
         return symptoms

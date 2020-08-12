@@ -3,6 +3,8 @@ import datetime
 import gsys_constants
 import signals
 import evaluators
+import event_rule
+import event_group_rule
 import log_parser
 import event_parser
 import criteria
@@ -14,7 +16,7 @@ if __name__ == "__main__":
 
     # Add the hotplug event to the builder
     log_sifter_builder.add_event_rule(
-        log_parser.EventRule(
+        event_rule.EventRule(
             tag="hotplug", 
             regular_expression="(.*)(queueing hotplug event for post rebuild processing:)"\
                                "\s*(subsystem:)\s*(\")(?P<subsystem>\w*)(\")\s*(action:)"\
@@ -26,7 +28,7 @@ if __name__ == "__main__":
 
     # Add the SIGTERM event to the builder
     log_sifter_builder.add_event_rule(
-        log_parser.EventRule(
+        event_rule.EventRule(
             tag="sigterm",
             regular_expression="(.*)(SIGTERM)(.*)"
         )
@@ -34,7 +36,7 @@ if __name__ == "__main__":
 
     # Add the SIGSEGV event to the builder
     log_sifter_builder.add_event_rule(
-        log_parser.EventRule(
+        event_rule.EventRule(
             tag="sigsegv",
             regular_expression="(.*)(SIGSEGV)(.*)"
         )
@@ -42,7 +44,7 @@ if __name__ == "__main__":
 
     # Add the rescan start event to the bulder
     log_sifter_builder.add_event_rule(
-        log_parser.EventRule(
+        event_rule.EventRule(
             tag="start_rescan",
             regular_expression="(.*)(launching scheduled platform rebuild)(.*)"
         )
@@ -50,7 +52,7 @@ if __name__ == "__main__":
 
     # Add the rescan finish event to the builder
     log_sifter_builder.add_event_rule(
-        log_parser.EventRule(
+        event_rule.EventRule(
             tag="finish_rescan", 
             regular_expression="(.*)(successfully reinitialized platform)(.*)"
         )
@@ -58,23 +60,23 @@ if __name__ == "__main__":
     
     # Add gsysd version publishing
     log_sifter_builder.add_event_rule(
-        log_parser.EventRule(
+        event_rule.EventRule(
             tag="gsysd_version_published",
             regular_expression="(.*)(gsysd version:)(.*)"
         )
     )
 
-    # Add Scaffolding server start-up event to builder
+    # Add Gsys server start-up event to builder
     log_sifter_builder.add_event_rule(
-        log_parser.EventRule(
-            tag="scaffolding_server_start",
-            regular_expression="(.*)(Scaffolding server has started and is serving requests.)(.*)"
+        event_rule.EventRule(
+            tag="gsys_server_start",
+            regular_expression="(.*)(initializing gsys server)(.*)"
         )
     )
 
     # Add platform rescan group to the builder
     log_sifter_builder.add_group_rule(
-        event_parser.EventGroupRule(
+        event_group_rule.EventGroupRule(
             tag="platform_rescan",
             trigger_event_tags=["start_rescan", "finish_rescan"],
             context_event_tags=["hotplug"]
@@ -82,8 +84,8 @@ if __name__ == "__main__":
     )
 
     # Add SIGTERM group to the builder
-    log_sifter_buidler.add_group_rule(
-        event_parser.EventGroupRule(
+    log_sifter_builder.add_group_rule(
+        event_group_rule.EventGroupRule(
             tag="sigterm",
             trigger_event_tags=["sigterm"],
             context_event_tags=[]
@@ -91,20 +93,20 @@ if __name__ == "__main__":
     )
 
     # Add SIGSEGV group to the builder
-    log_sifter_buidler.add_group_rule(
-        event_parser.EventGroupRule(
+    log_sifter_builder.add_group_rule(
+        event_group_rule.EventGroupRule(
             tag="sigsegv",
             trigger_event_tags=["sigsegv"],
             context_event_tags=[]
         )
     )
 
-    # Add Scaffolding server startup group to builder
+    # Add Gsys server startup group to builder
     log_sifter_builder.add_group_rule(
-        event_parser.EventGroupRule(
+        event_group_rule.EventGroupRule(
             tag="gsys_startup",
-            trigger_event_rules=["gsysd_version_published", "scaffolding_server_start"],
-            context_event_rules=[]
+            trigger_event_tags=["gsysd_version_published", "gsys_server_start"],
+            context_event_tags=[]
         )
     )
 
@@ -131,7 +133,7 @@ if __name__ == "__main__":
                 tag="gsys_startup_signal", 
                 group_tag="gsys_startup", 
                 start_event_tag="gsysd_version_published", 
-                end_event_tag="scaffolding_server_start"
+                end_event_tag="gsys_server_start"
             ),
             evaluator=evaluators.GreaterThanEvaluator(
                 threshold=gsys_constants.GSYS_SLOW_STARTUP_THRESHOLD

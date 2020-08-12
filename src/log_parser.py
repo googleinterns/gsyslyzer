@@ -68,14 +68,14 @@ class LogParser:
 
                     log_line_details_dict = self.extract_log_line_details(line)
                     log_line_details_dict['year'] = log_year
-                    log_event = log_event.LogEvent(tag, log_line_details_dict, result)
+                    new_log_event = log_event.LogEvent(tag, log_line_details_dict, result)
 
-                    self.log_events_found.append(log_event)
+                    self.log_events_found.append(new_log_event)
                     
                     if tag not in self.log_events_found_dict:
-                        self.log_events_found_dict[tag] = [log_event]
+                        self.log_events_found_dict[tag] = [new_log_event]
                     else:
-                        self.log_events_found_dict[tag].append(log_event)
+                        self.log_events_found_dict[tag].append(new_log_event)
 
     def convert_string_message_type_to_enum(self, line_message_type):
         options = {
@@ -110,6 +110,7 @@ class LogParser:
         if result:
             log_line_details_dict = result.groupdict()
         else:
+            print(line)
             raise Exception("Bad file format.")
 
         return log_line_details_dict
