@@ -54,79 +54,79 @@ To Analyze a Gsys Log:
 
 #### Event Rules:
 ***
-__tag__: string label
+tag: string label
 
-__regular_expression__: string regular expression
+regular_expression: string regular expression
 
 #### Event Group Rules:
 ***
-__tag__: string label
+tag: string label
 
-__trigger_event_tags__: ordered list string event tags that define the group
+trigger_event_tags: ordered list string event tags that define the group
 
-__context_event_tags__: unordered list of event tags to be collected as context
+context_event_tags: unordered list of event tags to be collected as context
 
 #### Criteria:
 ***
-__symptom_tag__: string label
+symptom_tag: string label
 
-__signal__: Signal object of what relationship to detect (see __Signals__)
+signal: Signal object of what relationship to detect (see __Signals__)
 
-__evalutor__: Evaluator object of how to compare a signal to a threshold (see __Evaluators__)
+evalutor: Evaluator object of how to compare a signal to a threshold (see __Evaluators__)
 
-__action_msg__: string message to report to user if the symptom occurs
+action_msg: string message to report to user if the symptom occurs
 
 #### Signals
 ***
 The following are the options for signals:
 1. __IntervalGroupSignal__: Detects time between start_group_tag and end_group_tag
     
-    __tag__: string label
+    tag: string label
     
-    __start_group_tag__: string group tag 
+    start_group_tag: string group tag 
     
-    __end_group_tag__: string group tag
+    end_group_tag: string group tag
 
 2. __RepeatGroupSignal__: Detects time between repeats of group_tag
     
-    __tag__: string label
+    tag: string label
     
-    __group_tag__: string group tag
+    group_tag: string group tag
 
 3. __ExistenceGroupSignal__: Detects if group_tag exists
     
-    __tag__: string label
+    tag: string label
     
-    __group_tag__: string group tag
+    group_tag: string group tag
 
 4. __IntervalEventSignal__: Detects time between start_event_tag and end_event_tag within group_tag
     
-    __tag__: string label
+    tag: string label
     
-    __group_tag__: string group tag
+    group_tag: string group tag
     
-    __start_event_tag__: string event tag 
+    start_event_tag: string event tag 
     
-    __end_event_tag__: string event tag
+    end_event_tag: string event tag
 
 #### Evaluators
 ***
 The following are options for evaluators:
 1. __GreaterThanEvaluator__: Evaluates if signal is greater than a threshold
 
-    __threshold__: datetime.timedelta object
+    threshold: datetime.timedelta object
 
 2. __GreaterThanEqualEvaluator__: Evaluates if signal is greater than or equal to a threshold
 
-    __threshold__: datetime.timedelta object
+    threshold: datetime.timedelta object
 
 3. __LessThanEvaluator__: Evaluates if signal is less than a threshold
 
-    __threshold__: datetime.timedelta object
+    threshold: datetime.timedelta object
 
 4. __LessThanEqualEvaluator__: Evaluates if signal is less than or equal to a threshold
 
-    __threshold__: datetime.timedelta object
+    threshold: datetime.timedelta object
 
 5. __ExistenceEvaluator__: Evaluates if signal exists
 
