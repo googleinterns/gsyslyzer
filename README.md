@@ -50,7 +50,7 @@ To Analyze a Gsys Log:
 ***
 ### The Basics
 
-![Gsyslyzer Design Image](https://github.com/googleinterns/gsyslyzer/tree/readme_updates/design_image.png "Gsyslyzer Design")
+![Gsyslyzer Design Image](design_image.png "Gsyslyzer Design")
 
 #### Event Rules:
 ***
