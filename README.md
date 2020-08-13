@@ -48,23 +48,23 @@ To Analyze a Gsys Log:
 
 ## How do I add a new symptom?
 ***
-#### The Basics
+### The Basics
 
 ![Gsyslyzer Design Image](https://github.com/googleinterns/gsyslyzer/tree/master/design_image.png "Gsyslyzer Design")
 
-##### Event Rules:
+#### Event Rules:
 __tag__: string label
 
 __regular_expression__: string regular expression
 
-##### Event Group Rules:
+#### Event Group Rules:
 __tag__: string label
 
 __trigger_event_tags__: ordered list string event tags that define the group
 
 __context_event_tags__: unordered list of event tags to be collected as context
 
-##### Criteria:
+#### Criteria:
 __symptom_tag__: string label
 
 __signal__: Signal object of what relationship to detect (see __Signals__)
@@ -73,7 +73,7 @@ __evalutor__: Evaluator object of how to compare a signal to a threshold (see __
 
 __action_msg__: string message to report to user if the symptom occurs
 
-##### Signals
+#### Signals
 The following are the options for signals:
 1. __IntervalGroupSignal__: Detects time between start_group_tag and end_group_tag
     
@@ -105,7 +105,7 @@ The following are the options for signals:
     
     __end_event_tag__: string event tag
 
-##### Evaluators
+#### Evaluators
 The following are options for evaluators:
 1. __GreaterThanEvaluator__: Evaluates if signal is greater than a threshold
 
@@ -126,7 +126,7 @@ The following are options for evaluators:
 5. __ExistenceEvaluator__: Evaluates if signal exists
 
 
-#### An Example
+### An Example
 To demonstrate how to define a new symptom let's walkthrough an example...
 
 For this example, suppose we want to identify if our automatic pet feeding software is feeding the pets too often.
