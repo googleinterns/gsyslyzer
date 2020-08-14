@@ -55,7 +55,7 @@ class LogSifter:
 
         # Construct the output
         if self.flags.json_output:
-            self.output_to_json(group_parser)
+            self.output_to_json(group_parser, collect_statistics)
         else:
             self.output_to_terminal(group_parser)
 
