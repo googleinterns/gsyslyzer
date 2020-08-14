@@ -31,14 +31,15 @@ class SymptomBurst:
 
     def convert_to_dict(self):
         """ Converts self to a dict form for json output """
-        
+
+        converted_symptoms = []
+        for symptom in self.symptoms:
+            converted_symptom = symptom.convert_to_dict()
+            converted_symptoms.append(converted_symptom)
+
         dict_form = self.__dict__
         dict_form["burst_start_timestamp"] = str(dict_form["burst_start_timestamp"])
         dict_form["duration"] = str(dict_form["duration"])
-        dict_form["symptoms"] = []
-        
-        for symptom in self.symptoms:
-            converted_symptom = symptom.convert_to_dict()
-            dict_form["symptoms"].append(converted_symptom)
-
+        dict_form["symptoms"] = converted_symptoms
+       
         return dict_form

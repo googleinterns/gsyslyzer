@@ -25,14 +25,14 @@ class DetectedSignal:
         dict_form["end_timestamp"] = str(self.end_timestamp)
             
         if self.interval is not None:
-            dict_form["interval"] = str(dict_form.interval)
+            dict_form["interval"] = str(self.interval)
 
         dict_form["groups"] = []
         for group in self.groups:
             converted_group = group.convert_to_dict()
-            dict_form["groups"].apppend(converted_group)
+            dict_form["groups"].append(converted_group)
 
-        return output
+        return dict_form
 
 class IntervalGroupSignal:
     """ Interval signal detector for event groups """
