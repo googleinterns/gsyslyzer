@@ -44,8 +44,9 @@ class EventGroupParser:
                                                       self.collect_statistics)
             if self.collect_statistics:
                 statistics_summary = criteria_output["statistics"]
-                signal_tag = statistics_summary["signal_tag"]
-                self.statistics_summaries[signal_tag] = statistics_summary
+                if statistics_summary is not None:
+                    signal_tag = statistics_summary["signal_tag"]
+                    self.statistics_summaries[signal_tag] = statistics_summary
 
             symptoms = criteria_output["symptoms"]
 
