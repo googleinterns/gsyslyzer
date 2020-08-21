@@ -41,10 +41,12 @@ class Criteria:
             "confirmed_signals": confirmed_signals.keys()
         }
 
-        if collect_statistics:
+        if collect_statistics and len(detected_signals) > 0:
             statistics_collector = signal_statistics.SignalStatistics()
             stat_summary = statistics_collector.collect_signal_stats(detected_signals)
             output_dict["statistics"] = stat_summary
+        else:
+            output_dict["statistics"] = None
 
         return output_dict
 

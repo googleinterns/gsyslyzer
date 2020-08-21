@@ -44,7 +44,7 @@ class SignalStatistics:
 
         all_hours = list(occurence_rate_data.keys())
         hour_span = np.max(all_hours) - np.min(all_hours)
-        hourly_rate = np.sum(list(occurence_rate_data.values())) / float(hour_span)
+        hourly_rate = np.sum(list(occurence_rate_data.values())) / max(float(hour_span), 1)
 
         durations = np.array(duration_data)
         duration_mean = np.mean(durations)
