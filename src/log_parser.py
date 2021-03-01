@@ -34,7 +34,7 @@ class LogParser:
         
     def load_log(self):
         try:
-            with open(self.path_to_raw_log) as raw_log:
+            with open(self.path_to_raw_log, errors='ignore') as raw_log:
                 loaded_log = str(raw_log.read())
                 return loaded_log
         except:
